@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     //user is signed in
-                    Toast.makeText(MainActivity.this, "You're now signed in. Welcom to Friendly Chat", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "You're now signed in. Welcom to Friendly Chat", Toast.LENGTH_SHORT).show();
                     onSignedInInitialize(user.getDisplayName());
                 } else {
                     //user is signed out
@@ -196,9 +196,8 @@ public class MainActivity extends AppCompatActivity {
         if (mAuthStateListener != null) {
             mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
         }
-        detachDatabaseReadListener();
         mMessageAdapter.clear();
-
+        detachDatabaseReadListener();
     }
 
 
@@ -215,8 +214,9 @@ public class MainActivity extends AppCompatActivity {
         detachDatabaseReadListener();
     }
 
+
     private void attachDatabaseReadListener() {
-        if (mMessagesDatabaseReference == null) {
+        if (mChildEventListener == null) {
             mChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
@@ -230,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                @Override
                 public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
                 }
